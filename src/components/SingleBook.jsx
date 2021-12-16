@@ -11,6 +11,7 @@ class SingleBook extends React.Component {
         <Card
           onClick={() => this.setState({ selected: !this.state.selected })}
           style={{
+            width: "300",
             border: this.state.selected ? "2px solid red" : "none",
           }}
         >
