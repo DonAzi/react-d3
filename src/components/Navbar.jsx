@@ -4,7 +4,7 @@ const MyNavBar = () => {
   return (
     <Nav
       className="bg-dark p-2"
-      style={{ position: "fixed", top: "0", width: "100%" }}
+      // style={{ position: "fixed", top: "0", width: "100%" }}
       variant="light"
       expand="lg"
       activeKey="/home"

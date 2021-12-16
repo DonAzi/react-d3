@@ -1,45 +1,72 @@
 import React from "react";
-import items from "../jsonData/history.json";
-import { Card, Button, Container, Row, Col, FormLabel } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  FormLabel,
+  FormControl,
+} from "react-bootstrap";
+import Singlebook from "./SingleBook";
 
-const Home = () => {
-  return (
-    <div>
+class Home extends React.Component {
+  state = { searchQuery: "" };
+
+  render() {
+    return (
       <Container>
+        <Row>
+          <Col>
+            <Form.Group className="formBasicEmail">
+              <FormLabel>Search</FormLabel>
+              <FormControl
+                type="text"
+                placeholder="Search here"
+                value={this.state.searchQuery}
+                onChange={(e) => this.setState({ searchQuery: e.target.value })}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
         <Row className="g-4" xs={2} md={4}>
-          {items.map((item) => (
-            <Col className="col-4">
-              <Card className="my-2">
-                <Card.Img
-                  className="img-fluid"
-                  style={{
-                    height: 300,
-                    objectFit: "cover",
-                  }}
-                  variant="top"
-                  src={item.img}
-                />
-                <Card.Body>
-                  <Card.Title className="text-truncate">
-                    {item.title}
-                  </Card.Title>
-                  <FormLabel className="bg-warning text-white font-weight-bolder">
-                    £{item.price}
-                  </FormLabel>
-                  <Button
-                    className="btn-sm ml-5 font-weight-bolder"
-                    variant="success"
-                  >
-                    Order now
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
+          {this.props.card
+            .filter(
+              (
+                b //searchQuery begins here with tricks ßand headaches
+              ) => b.title.toLowerCase().includes(this.state.searchQuery)
+            )
+            .map((b) => (
+              <Col className="my-3">
+                <Singlebook book={b} />
+              </Col>
+            ))}
         </Row>
       </Container>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Home;
+
+/* <Card className="my-2">
+  <Card.Img
+    className="img-fluid"
+    style={{
+      height: 300,
+      objectFit: "cover",
+    }}
+    variant="top"
+    src={item.img}
+  />
+  <Card.Body>
+    <Card.Title className="text-truncate">
+      {item.title}
+    </Card.Title>
+    <Button
+      className="btn-sm ml-5 font-weight-bolder"
+      variant="success"
+    >
+      Order now
+    </Button>
+  </Card.Body>
+</Card> */
