@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <Navbar />
       <AnAlert text="I am an Alert !!!" />
-      <SingleBook book={history[7]} />
+      <SingleBook book={history[12]} />
       <MyBadge text="Im a badge" color={"info"} />
       <Home card={history} />
       <MyFooter />

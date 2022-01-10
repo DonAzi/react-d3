@@ -32,14 +32,15 @@ class Home extends React.Component {
           {this.props.card
             .filter(
               (
-                b //searchQuery begins here with tricks ßand headaches
+                b //searchQuery begins here with tricks and headaches
               ) => b.title.toLowerCase().includes(this.state.searchQuery)
             )
             .map((b) => (
-              <Col className="my-3">
+              <Col xs={12} md={6} xl={4} className="my-3">
                 <Singlebook book={b} />
               </Col>
             ))}
+          <Col></Col>
         </Row>
       </Container>
     );
